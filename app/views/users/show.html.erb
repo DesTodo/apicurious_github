@@ -1,15 +1,7 @@
 <h3> Welcome, <%=current_user.username %>!! </h3>
-<ul>
-
-
-<h2> Followers: <% @profile.followers.map do |i| %><br><br><br> </h2>
-<li>
-<h3> <%= puts i[:login] %>
-<% end %>
-<%= @profile.following.map{|i| i[:login]} %><br><br><br>
-<%= @profile.num_starred_repos %><br><br><br>
-<%= @profile.recent_activity %><br><br><br>
-<img src="#{@profile.profile_picture}" alt=""> <%= @profile.profile_picture %><br><br>
+<%= @profile.followers %>
+<%= @profile.following %><br>
+<%= @profile.num_starred_repos %><br><br>
+<%= @profile.recent_activity %><br><br>
+<%= @profile.profile_picture %><br><br>
 <%= @profile.organizations %><br>
-</li>
-</ul>
