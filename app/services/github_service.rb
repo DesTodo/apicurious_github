@@ -17,6 +17,7 @@ class GithubService
   end
 
   def get_user_followers
+    binding.pry
     followers = get_url("/users/#{@user.username}/followers")
   end
 

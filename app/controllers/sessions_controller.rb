@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
     end
 
-    redirect_to profile_path(user)
+    redirect_to my_profile_path(user)
   end
 
   def destroy

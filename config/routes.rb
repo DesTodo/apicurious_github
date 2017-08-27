@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 # is all the info displayed on same page and page reloaded
 # or separate pages for separate info
 #resources :users, only: :show do
-  get '/profile', to: 'users#show'
+  get '/my-profile', to: 'users#show'
   get '/recent-activity', to: 'activity#index'
   get '/following', to: 'following#index'
   get '/organizations', to: 'organizations#index'
