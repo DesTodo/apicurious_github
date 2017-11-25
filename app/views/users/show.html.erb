@@ -1,7 +1,47 @@
 <h3> Welcome, <%=current_user.username %>!! </h3>
-<%= @profile.followers %>
-<%= @profile.following %><br>
+
+<%= image_tag(@profile.profile_picture) %><br><br>
+
+<div class="followers">
+  <table style= "table-layout: fixed; width: 100%;border-collapse: collapse">
+    <caption> These members are following you: </caption>
+    <thead>
+        <tr>
+          <th scope='col' > Username: </th>
+        </tr>
+    </thead>
+    <tbody style='letter-spacing: 2px'>
+      <% @profile.followers.each do |member| %>
+      <tr>
+        <td> <%= member %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="following">
+  <table style= "table-layout: fixed; width: 100%;border-collapse: collapse">
+    <caption> You are following these members: </caption>
+    <thead>
+        <tr>
+          <th scope='col' > Username: </th>
+        </tr>
+    </thead>
+    <tbody style='letter-spacing: 2px'>
+      <% @profile.following.each do |member| %>
+      <tr>
+        <td> <%= member %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3> Num starred repos:</h3>
 <%= @profile.num_starred_repos %><br><br>
-<%= @profile.recent_activity %><br><br>
-<!-- <%#= @profile.profile_picture %><br><br> -->
-<%= @profile.organizations %><br>
+
+<h3>My recent activity ids: </h3>
+<%= @profile.activity %><br><br>
+
+<h3> My organizations hash: <br> <%= @profile.organizations if @profile.organizations != [] %> </h3>

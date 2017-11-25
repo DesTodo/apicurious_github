@@ -1,8 +1,20 @@
 class GithubService
 
-  def initialize(user)
-   @user = user
-   @conn = Faraday.new(url: "https://api.github.com")
+  def initialize(current_user)
+     @user = current_user
+     @conn = Faraday.new('https://api.github.com//my-profile.3') do |faraday|
+      #  faraday.headers['Authorization'] = "token #{current_user.oauth_token}"
+      #  faraday.headers['Accept'] = "application/vnd.github.cloak-preview"
+       faraday.adapter Faraday.default_adapter
+
+     end
+   end
+
+  def default_params
+    {
+      client_id: ENV["github-key"],
+      client_secret: ENV["github-secret"]
+    }
   end
 
   def response
@@ -12,12 +24,11 @@ class GithubService
 
   def get_url(url)
     url_prefix = @conn.url_prefix
-    profile_attribute = @conn.get(url_prefix + url)
+    profile_attribute = @conn.get(url_prefix + url, default_params)
     JSON.parse(profile_attribute.body, symbolize_names: true)
   end
 
   def get_user_followers
-    binding.pry
     followers = get_url("/users/#{@user.username}/followers")
   end
 
