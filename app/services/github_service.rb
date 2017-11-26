@@ -3,10 +3,7 @@ class GithubService
   def initialize(current_user)
      @user = current_user
      @conn = Faraday.new('https://api.github.com//my-profile.3') do |faraday|
-      #  faraday.headers['Authorization'] = "token #{current_user.oauth_token}"
-      #  faraday.headers['Accept'] = "application/vnd.github.cloak-preview"
        faraday.adapter Faraday.default_adapter
-
      end
    end
 
